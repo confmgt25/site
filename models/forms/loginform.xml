@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form role="form">
+  <fieldset name = "New Author Register">
+
+	   <field name="pw" type="password"
+                
+            label="COM_CONFMGT_FORM_LBL_REG_PASS"
+            description="COM_CONFMGT_FORM_DESC_REG_PASS"        
+            required="true" 
+			class="form-control"
+			 
+		/>
+		 
+   
+   <field name="username" type="text"
+                
+            label="COM_CONFMGT_FORM_LBL_REG_USERNAME"
+            description="COM_CONFMGT_FORM_DESC_REG_USERNAME"        
+            required="true" 
+			class="form-control"
+			 
+		/>
+		
+  </fieldset>
+</form>
