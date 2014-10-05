@@ -38,7 +38,6 @@ class ConfmgtController extends JController
 		}
 		
 		//set models for the paper view (data from 3 models)
-		
 		if (JFactory::getApplication()->input->get('view')=='paper'){
 		$view = $this->getView( 'Paper', 'html' );
 		$view->setModel( $this->getModel( 'Paper' ), true );
