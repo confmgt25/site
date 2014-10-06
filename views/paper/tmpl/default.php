@@ -23,47 +23,43 @@
    if ($this->item) : ?>
 
 <div class="panel panel-default">
-<div class="panel-heading">
-  <h1><?php echo JText::_('COM_CONFMGT_PAPER_AUTHOR_PANEL_HEADING').' - '.JText::_('Paper ID').$this->item->id ; ?></h1>
-</div>
-<div class="panel-body">
-  <p><?php echo JText::_('COM_CONFMGT_PAPER_AUTHOR_PANEL_DETAILS'); ?></p>
-</div>
-<table class="table">
-  <tr>
-    <td><?php echo JText::_('COM_CONFMGT_FORM_LBL_PAPER_AUTHORS'); ?>:</td>
-    <td><?php if ($this->authors) {
+  <div class="panel-heading">
+    <h1><?php echo JText::_('COM_CONFMGT_PAPER_AUTHOR_PANEL_HEADING').' - '.JText::_('Paper ID').$this->item->id ; ?></h1>
+  </div>
+  <div class="panel-body">
+    <p><?php echo JText::_('COM_CONFMGT_PAPER_AUTHOR_PANEL_DETAILS'); ?></p>
+  </div>
+  <table class="table">
+    <tr>
+      <td><?php echo JText::_('COM_CONFMGT_FORM_LBL_PAPER_AUTHORS'); ?>:</td>
+      <td><?php if ($this->authors) {
                   	echo '<div align="left"><ol>';
                   		foreach ($this->authors as $author) { 
                   			echo ('<li>'.$author->title.' '.$author->firstname.' '.$author->surname.'</li>');
                   		}
                   	echo '</ol></div>';
-                  ?></td> 
-    <td><div align="right">
-        <form id="form-authors" style="display:inline" action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-          <?php echo JHtml::_('form.token'); ?>
-          <input type="hidden" name= "linkid" value="<?php echo $this->item->id; ?>" />
-          <button class="btn btn-default btn-sm" type="submit"><?php echo JText::_("Edit author details"); ?> </button>
-          <input type="hidden" name="option" value="com_confmgt" />
-          <input type="hidden" name="view" value="authors" />
-          <input type="hidden" name="layout" value="update" />
-        </form>
-        <form id="form-authors-reorder" style="display:inline" action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
-          <?php echo JHtml::_('form.token'); ?>
-          <input type="hidden" name= "linkid" value="<?php echo $this->item->id; ?>" />
-          <input type="hidden" name="option" value="com_confmgt" />
-          <input type="hidden" name="view" value="authors" />
-          <input type="hidden" name="layout" value="reorder" />
-          <button class="btn btn-default btn-sm" type="submit"><?php echo JText::_("Edit author sequence"); ?> </button> 
-        </form>
-      </div>
-      <?php } ?>
-    </div>
-    </td>
-  
+                  ?></td>
+      <td><div align="right">
+          <form id="form-authors" style="display:inline" action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
+            <?php echo JHtml::_('form.token'); ?>
+            <input type="hidden" name= "linkid" value="<?php echo $this->item->id; ?>" />
+            <button class="btn btn-default btn-sm" type="submit"><?php echo JText::_("Edit author details"); ?> </button>
+            <input type="hidden" name="option" value="com_confmgt" />
+            <input type="hidden" name="view" value="authors" />
+            <input type="hidden" name="layout" value="update" />
+          </form>
+          <form id="form-authors-reorder" style="display:inline" action="<?php echo JRoute::_('index.php'); ?>" method="post" class="form-validate" enctype="multipart/form-data">
+            <?php echo JHtml::_('form.token'); ?>
+            <input type="hidden" name= "linkid" value="<?php echo $this->item->id; ?>" />
+            <input type="hidden" name="option" value="com_confmgt" />
+            <input type="hidden" name="view" value="authors" />
+            <input type="hidden" name="layout" value="reorder" />
+            <button class="btn btn-default btn-sm" type="submit"><?php echo JText::_("Edit author sequence"); ?> </button>
+          </form>
+        </div>
+        <?php } ?></td>
     </tr>
-  
-</table>
+  </table>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -192,5 +188,7 @@
 </div>
 <?php
 endif;
+
+
 
 
