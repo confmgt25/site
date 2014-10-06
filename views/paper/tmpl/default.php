@@ -1,11 +1,4 @@
- PHP Beautifier
-Beautify and format your PHP code
- 
-Here is your PHP code :
- 	
- Source
- 
-See as Text
+
 <?php
 /**
  * @version     2.5.1
