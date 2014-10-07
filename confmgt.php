@@ -15,6 +15,7 @@ jimport('joomla.application.component.controller');
 //adding helpers
 JLoader::register( 'ConfmgtHelper' , JPATH_COMPONENT.'/helpers/confmgt.php' );
 JLoader::register( 'AclHelper' , JPATH_COMPONENT.'/helpers/acl.php' );
+JLoader::register( 'EmailHelper' , JPATH_COMPONENT.'/helpers/email.php' );
 
 //adding bootstrap styles
 $url = JURI::root()."components/com_confmgt/assets/css/bootstrap.css";
