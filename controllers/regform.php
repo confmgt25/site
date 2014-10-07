@@ -107,13 +107,35 @@ class ConfmgtControllerRegForm extends ConfmgtController
 			return false;
 		}
         
-	    // Clear the profile id from the session.
+	    $name = $data['title'].' '.$data['firstname'].' '.$data['surname'];
+		$username = $data['username'];
+		$password = $data['password'];
+		
+		// Clear the profile id from the session.
         $app->setUserState('com_confmgt.edit.reg.id', null);
 		$credentials = array( 'username' => $data['username'], 'password' => $data['password'] );
 
         // Redirect to the list screen.
         $this->setMessage(JText::_('COM_CONFMGT_REG_SUCCESSFULLY'));
 		$app->login($credentials);
+		
+		//sending the welcome email to the user
+		$emaildata = emailHelper::getEmailcontent ('regemail');
+		$rawsubject = $emaildata->subject;
+		$recipient = $data['email'];
+		
+		$config = JFactory::getConfig();
+		$sitename = $config->getValue( 'config.sitename' );
+		$rawbody = $emaildata->message;
+		
+		//setting placeholders
+		$placeholders = array('NAME'=>$name,'USERNAME'=>$username,'PASSWORD'=>$password,'SITE'=>$sitename);
+		
+		$body = emailHelper::replacePlaceholders($placeholders, $rawbody);
+		$subject = emailHelper::replacePlaceholders($placeholders, $rawsubject);
+		
+		emailHelper::sendEmail($recipient, $subject, $body, $sender=0, $cc=0,  $bcc=0, $attachment=0);
+		 
         $this->setRedirect(JRoute::_('index.php?option=com_confmgt&view=entrypage', false));
 
 		// Flush the data from the session.
@@ -122,6 +144,9 @@ class ConfmgtControllerRegForm extends ConfmgtController
     
     
     function cancel() {
+		$app	= JFactory::getApplication();
+		$app->setUserState('com_confmgt.edit.reg.id', null);
+		$app->setUserState('com_confmgt.edit.reg.data', null);
 		$this->setRedirect(JRoute::_('index.php?option=com_confmgt&view=entrypage', false)); 
 	}
     
