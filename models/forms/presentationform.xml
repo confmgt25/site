@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form role="form">
+	<fieldset name = "Presentation submission">
+	
+			<field name="type" type="text"
+                
+            label="COM_CONFMGT_FORM_LBL_PRESENTATION_TYPE"
+            description="COM_CONFMGT_FORM_PRESENTATION_TYPE"        
+            required="true" 
+			class="form-control"
+            filter="string" 
+			
+			/> 
+	
+			<field name="presentation" type="file" 
+			label="COM_CONFMGT_FORM_LBL_PRESENTATION" 
+			description="COM_CONFMGT_FORM_PRESENTATION" size="10" 
+			class="form-control"	
+			required="true" 
+			/>
+	</fieldset> 
+
+</form>

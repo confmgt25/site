@@ -27,7 +27,7 @@ $lang->load('com_confmgt', JPATH_ADMINISTRATOR);
              <span>
 				<form id="form-enrty-1" action="<?php echo JRoute::_('index.php'); ?>" method="post" enctype="multipart/form-data" class="form-inline form-entry">
 				<?php echo JHtml::_('form.token'); ?>
-                <button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="glyphicon glyphicon-user lg-span"></span><br />';  ?><?php echo JText::_("Author"); ?> </button>
+                <button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="lg-span"><img src="'.JURI::root().'components/com_confmgt/assets/img/author.png" alt="Login" height="42" width="42"></span><br />';  ?><?php echo JText::_("Author"); ?> </button>
 				<input type="hidden" name="option" value="com_confmgt" />
                 <input type="hidden" name="view" value="papers" />
 				<input type="hidden" name="layout" value="default" />
@@ -41,7 +41,7 @@ $lang->load('com_confmgt', JPATH_ADMINISTRATOR);
                 <input type="hidden" name="option" value="com_confmgt" />
                 <input type="hidden" name="view" value="papers" />
 				<input type="hidden" name="layout" value="leader_default" />
-				<button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="glyphicon glyphicon-lock lg-span"></span><br />';  ?><?php echo JText::_("Theme Leader"); ?> </button>
+				<button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="lg-span"><img src="'.JURI::root().'components/com_confmgt/assets/img/theme_leader.png" alt="Login" height="42" width="42"></span><br />';  ?><?php echo JText::_("Theme Leader"); ?> </button>
                 </form> 
                 </span>
             <?php endif; ?> 
@@ -52,7 +52,7 @@ $lang->load('com_confmgt', JPATH_ADMINISTRATOR);
                 <input type="hidden" name="option" value="com_confmgt" /> 
                 <input type="hidden" name="view" value="rev1ews" />
 				<input type="hidden" name="layout" value="default" />
-				<button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="glyphicon glyphicon-pencil lg-span"></span><br />';  ?><?php echo JText::_("Reviewer"); ?> </button>
+				<button class="btn btn-entry btn-default" type="submit"><?php echo '<span class="lg-span"><img src="'.JURI::root().'components/com_confmgt/assets/img/reviewers.png" alt="Login" height="42" width="42"></span><br />';  ?><?php echo JText::_("Reviewer"); ?> </button>
                 </form>
 				</span> 
     		<?php endif; ?>     

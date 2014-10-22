@@ -91,9 +91,10 @@ abstract class AclHelper
 		
 			//Build the query 
 			$query = $db->getQuery(true)
-						->select($db->quoteName(array('a.id', 'a.userid')))
+						->select($db->quoteName(array('a.id', 'a.userid', 'a.agreed')))
 						->from($db->quoteName('#__confmgt_rev1ewers', 'a'))
-						->where('a.userid = '. (int)$user->id);
+						->where('a.userid = '. (int)$user->id)
+						->where('a.agreed = 1');
 		}else{
 						//Build the query 
 			$query = $db->getQuery(true)
@@ -101,7 +102,8 @@ abstract class AclHelper
 						->from($db->quoteName('#__confmgt_rev1ewers_papers', 'a'))
 						->join('INNER', $db->quoteName('#__users', 'b') . ' ON (' . $db->quoteName('a.userid') . ' = ' . $db->quoteName('b.id').')')
 						->where('b.id = '. (int)$user->id)
-						->where('a.paperid = '. (int)$paperid); 
+						->where('a.paperid = '. (int)$paperid)
+						->where('a.agreed = 1');
 		}
 			
 		//Prepare the query
@@ -128,19 +130,76 @@ abstract class AclHelper
 		}
 			$query = $db->getQuery(true)
 						->select('id, email')
-						->from($db->quoteName('#__confmgt_users'))
-						->where('email = '. $email);
+						->from($db->quoteName('#__users'))
+						->where($db->quoteName('email').' = '.$db->quote($email));
 			
 		//Prepare the query
 		$db->setQuery($query); 
 		// Load the row.
 		$row = $db->loadObject();
-		
-		if ($row->id > 0) {
+		print_r($query);
+		if ($row) {
 			return $row->id;
 		}else{
 			return false;
 		}
+	}
+	
+	//Function to get Reviewer ID by email
+	public static function getRev1ewerID($email)
+	{
+		//Obtain a database connection
+		$db = JFactory::getDbo();
+		$user = JFactory::getUser();
+		
+		if ($user->id == 0) {
+			return false;
+		}
+		
+			//Build the query 
+			$query = $db->getQuery(true)
+						->select($db->quoteName(array('a.id', 'a.userid', 'a.email', 'a.agreed'))) 
+						->from($db->quoteName('#__confmgt_rev1ewers', 'a'))
+						->where($db->quoteName('email').' = '.$db->quote($email));
+			
+		//Prepare the query
+		$db->setQuery($query);
+		$row = $db->loadObject();
+		if ($row) {
+			return $row;
+		}else{
+			return false;
+		}
+		
+	}
+	
+	//Function to get the number of reviewers for a given paper
+	public static function getNumofRev1ewers($paperid)
+	{
+		//Obtain a database connection
+		$db = JFactory::getDbo();
+		$user = JFactory::getUser();
+		
+		if ($user->id == 0) {
+			return false;
+		}
+		
+			//Build the query 
+			$query = $db->getQuery(true)
+						->select($db->quoteName(array('a.id', 'a.userid', 'a.email', 'a.agreed'))) 
+						->from($db->quoteName('#__confmgt_rev1ewers_papers', 'a'))
+						->where($db->quoteName('paperid').' = '.(int)($paperid));
+			
+		//Prepare the query
+		$db->setQuery($query);
+		$db->execute();
+		$num_rows = $db->getNumRows();
+		if ($num_rows > 0) {
+			return $num_rows;
+		}else{
+			return false;
+		}
+		
 	}
 		
 	

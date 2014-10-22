@@ -26,9 +26,10 @@ class ConfmgtController extends JController
 		if ($user->guest) {
 			if (JFactory::getApplication()->input->get('view')=='loginform') {
 				$this->setMessage(JText::_('COM_CONFMGT_LOGIN_REQUIRED', 'information'));
-			}elseif (JFactory::getApplication()->input->get('view')=='regform') {
-				
+			}elseif (JFactory::getApplication()->input->get('view')=='regform') {			
 				$this->setMessage(JText::_('COM_CONFMGT_REG_REQUIRED', 'information'));
+				
+			}elseif ((JFactory::getApplication()->input->get('view')=='rev1ewerform')&&(JFactory::getApplication()->input->get('layout')=='agree_form')) {			
 			
 			}else{
 				$this->setMessage(JText::_('COM_CONFMGT_GUEST_NEW', 'information'));
@@ -48,8 +49,7 @@ class ConfmgtController extends JController
 		$view->display();
 		
 		}else{
-			
-		$this->display();
+			$this->display();
 		}
 	}
 

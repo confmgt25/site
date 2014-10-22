@@ -155,18 +155,17 @@ class ConfmgtModelPapers extends JModelList {
 		$query = $db->getQuery(true);
 		$user = JFactory::getUser();
 
-		 
-		// Select all articles for users who have a username which starts with 'a'.
-		// Order it by the created date.
-		// Note by putting 'a' as a second parameter will generate `#__content` AS `a`
 		$query
 			->select('a.*')
 			->from('#__confmgt_papers as a')
 			->select('b.title as theme')
 			->join('LEFT', '#__confmgt_themes as b ON a.theme = b.id')
 			->select('uc.name as author')
+			->select('COUNT(d.reviewerid) AS rev1ewers')
 			->join('LEFT', '#__users as uc ON uc.id = a.created_by')
+			->join('LEFT', $db->quoteName('#__confmgt_rev1ewers_papers', 'd') . ' ON (' . $db->quoteName('a.id') . ' = ' . $db->quoteName('d.paperid') . ')')
 			->where('b.userid = '.$user->id) 
+			->group('a.id')
 			->order('a.id ASC');
 		
 		 
@@ -177,7 +176,6 @@ class ConfmgtModelPapers extends JModelList {
 		$results = $db->loadObjectList();
 
 	return $results;
-}
-			
+	}
 	
 }

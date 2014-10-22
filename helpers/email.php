@@ -48,7 +48,7 @@ abstract class EmailHelper
 			JFactory::getApplication()->enqueueMessage(JText::_('ERROR_OCCURRED_SENDING_MAIL'), 'error');
 			return false;
 		} else {
-			JFactory::getApplication()->enqueueMessage(JText::_('MAIL_SENT'), 'notice'); 
+			JFactory::getApplication()->enqueueMessage(JText::_('MAIL_SENT'), 'message'); 
 			return true;
 		}
 			
